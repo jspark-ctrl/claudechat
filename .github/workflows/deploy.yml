@@ -1,0 +1,39 @@
+name: Deploy to IIS
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Publish
+        run: dotnet publish ClaudeChat.csproj -c Release -o ./publish
+
+      - name: Inject API Key into web.config
+        shell: pwsh
+        run: |
+          $config = Get-Content ./publish/web.config -Raw
+          $config = $config -replace 'YOUR_API_KEY_HERE', '${{ secrets.ANTHROPIC_API_KEY }}'
+          Set-Content ./publish/web.config $config
+
+      - name: Deploy via MSDeploy
+        shell: cmd
+        run: |
+          "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" ^
+            -verb:sync ^
+            -source:contentPath="%cd%\publish" ^
+            -dest:contentPath="Default Web Site/claudechatv1",computerName="https://${{ secrets.SERVER_HOST }}:8172/msdeploy.axd?site=Default Web Site",userName="${{ secrets.SERVER_USERNAME }}",password="${{ secrets.SERVER_PASSWORD }}",authtype="Basic" ^
+            -allowUntrusted ^
+            -enableRule:AppOffline ^
+            -retryAttempts:3
