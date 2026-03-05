@@ -11,13 +11,15 @@ builder.Services.AddSingleton<AnthropicClient>(_ =>
 
 var app = builder.Build();
 
+// IIS 서브경로 배포를 위한 PathBase 설정
+app.UsePathBase("/claudechatv1");
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.MapRazorPages();

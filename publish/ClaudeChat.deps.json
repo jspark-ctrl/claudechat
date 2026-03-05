@@ -1,0 +1,59 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "ClaudeChat/1.0.0": {
+        "dependencies": {
+          "Anthropic": "12.8.0"
+        },
+        "runtime": {
+          "ClaudeChat.dll": {}
+        }
+      },
+      "Anthropic/12.8.0": {
+        "dependencies": {
+          "Microsoft.Extensions.AI.Abstractions": "10.2.0"
+        },
+        "runtime": {
+          "lib/net9.0/Anthropic.dll": {
+            "assemblyVersion": "12.8.0.0",
+            "fileVersion": "12.8.0.0"
+          }
+        }
+      },
+      "Microsoft.Extensions.AI.Abstractions/10.2.0": {
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.AI.Abstractions.dll": {
+            "assemblyVersion": "10.2.0.0",
+            "fileVersion": "10.200.26.6302"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ClaudeChat/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Anthropic/12.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ruR9/PYqmhxY053VqwQCHuy7CMmY3t2Vh/xAyp9pdC8D0tsj6rn+asM+zrlmr5O9CUStpxP55QVvCNQnOVxggg==",
+      "path": "anthropic/12.8.0",
+      "hashPath": "anthropic.12.8.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.AI.Abstractions/10.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ONGlIBht0ygEdKc0bCt9XWUiq19/460dAu7fCKzPM34OFJSMQIohEDTJwjCJ8vVp8znNakloc9xFF9+R/eDCYQ==",
+      "path": "microsoft.extensions.ai.abstractions/10.2.0",
+      "hashPath": "microsoft.extensions.ai.abstractions.10.2.0.nupkg.sha512"
+    }
+  }
+}
