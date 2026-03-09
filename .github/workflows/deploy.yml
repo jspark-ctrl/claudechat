@@ -33,7 +33,7 @@ jobs:
           "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" ^
             -verb:sync ^
             -source:contentPath="%cd%\publish" ^
-            -dest:contentPath="Default Web Site/claudechatv1",computerName="https://${{ secrets.SERVER_HOST }}:8172/msdeploy.axd?site=Default Web Site",userName="${{ secrets.SERVER_USERNAME }}",password="${{ secrets.SERVER_PASSWORD }}",authtype="Basic" ^
+            -dest:contentPath="apps/claudechatv1",computerName="https://${{ secrets.SERVER_HOST }}:8172/msdeploy.axd?site=apps",userName="${{ secrets.SERVER_USERNAME }}",password="${{ secrets.SERVER_PASSWORD }}",authtype="Basic" ^
             -allowUntrusted ^
             -enableRule:AppOffline ^
             -retryAttempts:3
